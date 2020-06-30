@@ -26,16 +26,16 @@
             this.emailLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passBox = new System.Windows.Forms.Label();
-            this.confirmPassLabel = new System.Windows.Forms.Label();
             this.emailBox = new System.Windows.Forms.TextBox();
             this.usernameBox = new System.Windows.Forms.TextBox();
             this.passwordBox = new System.Windows.Forms.TextBox();
-            this.confirmPassBox = new System.Windows.Forms.TextBox();
             this.submitAccountButton = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.emailErrorLabel = new System.Windows.Forms.Label();
             this.usernameErrorLabel = new System.Windows.Forms.Label();
             this.passwordErrorLabel = new System.Windows.Forms.Label();
+            this.confirmPassLabel = new System.Windows.Forms.Label();
+            this.confirmPassBox = new System.Windows.Forms.TextBox();
             this.confirmPassErrorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -66,15 +66,6 @@
             this.passBox.TabIndex = 2;
             this.passBox.Text = "Password";
             // 
-            // confirmPassLabel
-            // 
-            this.confirmPassLabel.AutoSize = true;
-            this.confirmPassLabel.Location = new System.Drawing.Point(97, 241);
-            this.confirmPassLabel.Name = "confirmPassLabel";
-            this.confirmPassLabel.Size = new System.Drawing.Size(91, 13);
-            this.confirmPassLabel.TabIndex = 3;
-            this.confirmPassLabel.Text = "Confirm Password";
-            // 
             // emailBox
             // 
             this.emailBox.Location = new System.Drawing.Point(100, 119);
@@ -96,14 +87,6 @@
             this.passwordBox.Size = new System.Drawing.Size(195, 20);
             this.passwordBox.TabIndex = 6;
             this.passwordBox.TextChanged += new System.EventHandler(this.passwordBox_TextChanged);
-            // 
-            // confirmPassBox
-            // 
-            this.confirmPassBox.Location = new System.Drawing.Point(100, 258);
-            this.confirmPassBox.Name = "confirmPassBox";
-            this.confirmPassBox.Size = new System.Drawing.Size(195, 20);
-            this.confirmPassBox.TabIndex = 7;
-            this.confirmPassBox.TextChanged += new System.EventHandler(this.confirmPassBox_TextChanged);
             // 
             // submitAccountButton
             // 
@@ -147,6 +130,23 @@
             this.passwordErrorLabel.Size = new System.Drawing.Size(0, 13);
             this.passwordErrorLabel.TabIndex = 12;
             // 
+            // confirmPassLabel
+            // 
+            this.confirmPassLabel.AutoSize = true;
+            this.confirmPassLabel.Location = new System.Drawing.Point(97, 241);
+            this.confirmPassLabel.Name = "confirmPassLabel";
+            this.confirmPassLabel.Size = new System.Drawing.Size(91, 13);
+            this.confirmPassLabel.TabIndex = 3;
+            this.confirmPassLabel.Text = "Confirm Password";
+            // 
+            // confirmPassBox
+            // 
+            this.confirmPassBox.Location = new System.Drawing.Point(100, 258);
+            this.confirmPassBox.Name = "confirmPassBox";
+            this.confirmPassBox.Size = new System.Drawing.Size(195, 20);
+            this.confirmPassBox.TabIndex = 7;
+            this.confirmPassBox.TextChanged += new System.EventHandler(this.confirmPassBox_TextChanged);
+            // 
             // confirmPassErrorLabel
             // 
             this.confirmPassErrorLabel.AutoSize = true;
@@ -186,16 +186,16 @@
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label passBox;
-        private System.Windows.Forms.Label confirmPassLabel;
         private System.Windows.Forms.TextBox emailBox;
         private System.Windows.Forms.TextBox usernameBox;
         private System.Windows.Forms.TextBox passwordBox;
-        private System.Windows.Forms.TextBox confirmPassBox;
         private System.Windows.Forms.Button submitAccountButton;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label emailErrorLabel;
         private System.Windows.Forms.Label usernameErrorLabel;
         private System.Windows.Forms.Label passwordErrorLabel;
+        private System.Windows.Forms.Label confirmPassLabel;
+        private System.Windows.Forms.TextBox confirmPassBox;
         private System.Windows.Forms.Label confirmPassErrorLabel;
     }
 }

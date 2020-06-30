@@ -53,9 +53,10 @@ namespace PasswordManager {
             if (emptyFields == 0)
                 try {
                     con.Open();
-                    var userExistsCheck = $"select userID from users where username like '{username}' or email like '{email}'";
+                    var userExistsCheck = $"select userID from users where username = @username or email = @email";
                     SqlCommand checkCommand = new SqlCommand(userExistsCheck, con);
-
+                    checkCommand.Parameters.AddWithValue("@username", username);
+                    checkCommand.Parameters.AddWithValue("@email", email);
                     SqlDataReader checkReturn = checkCommand.ExecuteReader();
 
                     if (checkReturn.HasRows) {
