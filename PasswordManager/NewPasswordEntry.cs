@@ -14,17 +14,15 @@ using System.IO;
 namespace PasswordManager {
     public partial class NewPasswordEntry : Form {
 
-        string db_conn = @"server=<Server IP>;User ID=<DB User>;Password=<Admin Password>;Initial Catalog=<Database Table>";
         private SqlConnection con;
         string username;
-        private string fs = $".\\";
-        private string file = "conf.dat";
+        private string confPath = $".\\conf.dat";
         byte[] K, IV;
 
         private string getUsername() { return this.username; }
         private void setUsername(string username) { this.username = username; }
 
-        public NewPasswordEntry(string username) {
+        public NewPasswordEntry(string username, string db_conn) {
             setUsername(username);
             con = new SqlConnection(db_conn);
             init();
@@ -39,8 +37,8 @@ namespace PasswordManager {
                 IV = aes.IV;
             }
 
-            using (FileStream stream = File.OpenRead(fs + file))
-                K = File.ReadAllBytes(fs + file);
+            using (FileStream stream = File.OpenRead(confPath))
+                K = File.ReadAllBytes(confPath);
         }
 
         /*

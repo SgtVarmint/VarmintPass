@@ -41,10 +41,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addEntryButton = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshDashboard = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginPanel.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
             this.columnControlBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // usernameBox
@@ -126,6 +131,7 @@
             this.loginPanel.Controls.Add(this.passwordBox);
             this.loginPanel.Controls.Add(this.loginButton);
             this.loginPanel.Controls.Add(this.passLabel);
+            this.loginPanel.Controls.Add(this.menuStrip2);
             this.loginPanel.Location = new System.Drawing.Point(-2, 0);
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(1395, 562);
@@ -221,6 +227,38 @@
             this.refreshDashboard.Size = new System.Drawing.Size(28, 20);
             this.refreshDashboard.Click += new System.EventHandler(this.refreshDashboard_Click);
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(1395, 24);
+            this.menuStrip2.TabIndex = 7;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.databaseConfigurationToolStripMenuItem,
+            this.preferencesToolStripMenuItem});
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.configToolStripMenuItem.Text = "Config";
+            // 
+            // databaseConfigurationToolStripMenuItem
+            // 
+            this.databaseConfigurationToolStripMenuItem.Name = "databaseConfigurationToolStripMenuItem";
+            this.databaseConfigurationToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.databaseConfigurationToolStripMenuItem.Text = "Database Configuration";
+            this.databaseConfigurationToolStripMenuItem.Click += new System.EventHandler(this.databaseConfigurationToolStripMenuItem_Click);
+            // 
+            // preferencesToolStripMenuItem
+            // 
+            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.preferencesToolStripMenuItem.Text = "Preferences";
+            // 
             // MainPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +277,8 @@
             this.columnControlBox.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -262,6 +302,10 @@
         private System.Windows.Forms.Button emailSortButton;
         private System.Windows.Forms.ToolStripMenuItem addEntryButton;
         private System.Windows.Forms.ToolStripMenuItem refreshDashboard;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem databaseConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
     }
 }
 

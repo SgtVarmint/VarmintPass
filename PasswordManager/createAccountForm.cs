@@ -12,11 +12,9 @@ using System.Data.SqlClient;
 namespace PasswordManager {
     public partial class createAccountForm : Form {
 
-        string db_conn = @"server=<Server IP>;User ID=<DB User>;Password=<Admin Password>;Initial Catalog=<Database Table>";
-
         private SqlConnection con;
 
-        public createAccountForm() {
+        public createAccountForm(string db_conn) {
             con = new SqlConnection(db_conn);
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;

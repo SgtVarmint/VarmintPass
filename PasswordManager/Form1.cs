@@ -9,31 +9,49 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Security.AccessControl;
 using System.Security.Cryptography;
 
 namespace PasswordManager {
     public partial class MainPane : Form {
 
-        //SQL Server connection string
-        string db_conn = @"server=<Server IP>;User ID=<DB User>;Password=<Admin Password>;Initial Catalog=<Database Table>";
+        string db_ip, db_user, db_pass, db_database, db_conn;
+
         private SqlConnection con;
+        private dbConfig dbConf;
         string username;
-        private string fs = $".\\";
-        private string file = "conf.dat";
+        private string confPath = $".\\conf.dat";
+        private string dbConfPath = $".\\db.conf";
         byte[] K, IV;
 
         public MainPane() {
-            con = new SqlConnection(db_conn);
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             dashboardPanel.Hide();
         }
 
+        private void databaseConfigurationToolStripMenuItem_Click(object sender, EventArgs e) {
+            dbConf = new dbConfig();
+            dbConf.Show();
+        }
+
+        private void setDBCreds() {
+            if (File.Exists(dbConfPath)) {
+                using(StreamReader readIn = new StreamReader(dbConfPath)) {
+                    db_ip = readIn.ReadLine();
+                    db_user = readIn.ReadLine();
+                    db_pass = readIn.ReadLine();
+                    db_database = readIn.ReadLine();
+
+                    readIn.Close();
+                }
+            }
+
+            db_conn = $"server={db_ip};User ID={db_user};Password={db_pass};Initial Catalog={db_database}";
+        }
+
         private void init() {
-            Directory.CreateDirectory(fs);
-            if (!File.Exists(fs + file)) {
-                using (FileStream stream = File.Create(fs + file)) {
+            if (!File.Exists(confPath)) {
+                using (FileStream stream = File.Create(confPath)) {
                     using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider()) {
                         aes.BlockSize = 128;
                         aes.Padding = PaddingMode.PKCS7;
@@ -44,8 +62,8 @@ namespace PasswordManager {
                 }
             }
 
-            using (FileStream stream = File.OpenRead(fs + file))
-                K = File.ReadAllBytes(fs + file);
+            using (FileStream stream = File.OpenRead(confPath))
+                K = File.ReadAllBytes(confPath);
             try {
                 //con.Open();
 
@@ -76,6 +94,9 @@ namespace PasswordManager {
             var stmt = $"SELECT u.userID, p.service, p.username, p.password from users AS u join passwords AS p ON (p.userID = u.userID)";
             */
             try {
+                setDBCreds();
+                con = new SqlConnection(db_conn);
+
                 con.Open();
                 string username = usernameBox.Text, password = passwordBox.Text;
                 var stmt = $"select username,password from users where username = @username";
@@ -127,7 +148,7 @@ namespace PasswordManager {
         /* ------- Account Creation Controls ------- */
 
         private void createAccountLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            new createAccountForm().Show();
+            new createAccountForm(db_conn).Show();
         }
 
         /* ------- Dashboard Controls -------*/
@@ -231,13 +252,13 @@ namespace PasswordManager {
         }
 
         private void addEntryButton_Click(object sender, EventArgs e) {
-            new NewPasswordEntry(usernameBox.Text).Show();
+            new NewPasswordEntry(usernameBox.Text, db_conn).Show();
         }
 
         private void refreshDashboard_Click(object sender, EventArgs e) {
             showData();
         }
-        
+
         private void serviceSortButton_Click(object sender, EventArgs e) {
             serviceButtonClicked = true;
         }
@@ -253,5 +274,6 @@ namespace PasswordManager {
         private void passwordSortButton_Click(object sender, EventArgs e) {
             passwordButtonClicked = true;
         }
+
     }
 }
